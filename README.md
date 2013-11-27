@@ -25,9 +25,8 @@ Usage
 -----
 
  - Switching between code and test: `Command-.`
-Keys:
- 'Command' (OSX)
- 'Ctrl' (Linux / Windows)
+
+  Keys: 'Command' (OSX), 'Ctrl' (Linux / Windows)
 
 Note
 ----
