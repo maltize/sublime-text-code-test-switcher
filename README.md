@@ -1,6 +1,13 @@
 Sublime Text Code Test Switcher
 ===============================
 
+Overview
+--------
+
+Plugin allows you to easily switch between code and test (or vice versa).
+
+Current version support only Python language.
+
 Maintainers:
 ------------
 * Maciej Gajek (https://github.com/maltize)
