@@ -24,7 +24,7 @@ git clone https://github.com/maltize/sublime-text-code-test-switcher.git CodeTes
 Usage
 -----
 
- - Switching between code and test: `Command-.`
+ - Switching between code <=> test: `Command-.`
 
   Keys: 'Command' (OSX), 'Ctrl' (Linux / Windows)
 
