@@ -6,6 +6,7 @@ Overview
 
 * Plugin allows you to easily switch between code and test (or vice versa).
 * Base on the current position of your cursor in test file it can generate test command for you, in a form:
+
 ``` shell
   testify [test_path] [test_class].[test_name]
 ```
@@ -28,7 +29,7 @@ Go to your Sublime Text `Packages` directory
 
 and clone the repository using the command below:
 
-```
+``` shell
 git clone https://github.com/maltize/sublime-text-code-test-switcher.git CodeTestSwitcher
 ```
 
