@@ -28,7 +28,7 @@ Go to your Sublime Text `Packages` directory
 
 and clone the repository using the command below:
 
-``` shell
+```
 git clone https://github.com/maltize/sublime-text-code-test-switcher.git CodeTestSwitcher
 ```
 
