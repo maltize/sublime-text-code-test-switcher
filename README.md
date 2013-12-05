@@ -4,7 +4,11 @@ Sublime Text Code Test Switcher
 Overview
 --------
 
-Plugin allows you to easily switch between code and test (or vice versa).
+* Plugin allows you to easily switch between code and test (or vice versa).
+* Base on the current position of your cursor in test file it can generate test command for you, in a form:
+``` shell
+  testify [test_path] [test_class].[test_name]
+```
 
 Current version support only Python language.
 
@@ -32,6 +36,7 @@ Usage
 -----
 
  - Switching between code <=> test: `Command-.`
+ - Generate test command and copy it to clipboard: `Command-,`
 
   Keys: 'Command' (OSX), 'Ctrl' (Linux / Windows)
 

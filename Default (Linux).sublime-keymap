@@ -3,5 +3,10 @@
     "context": [ { "key": "selector", "operator": "equal",
                    "operand": "source.python"
                } ]
+  },
+  { "keys": ["ctrl+,"], "command": "prepare_test_commander",
+    "context": [ { "key": "selector", "operator": "equal",
+                   "operand": "source.python"
+               } ]
   }
 ]
