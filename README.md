@@ -38,6 +38,7 @@ Usage
 
  - Switching between code <=> test: `Command-.`
  - Generate test command and copy it to clipboard: `Command-,`
+ - Generate test class command and copy it to clipboard: `Command-Shift-,`
 
   Keys: 'Command' (OSX), 'Ctrl' (Linux / Windows)
 

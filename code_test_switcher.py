@@ -50,24 +50,7 @@ class SwitchBetweenCodeAndTest(sublime_plugin.TextCommand):
             candidates += [os.path.join(dirname, file)]
     return candidates
 
-# Copy to clipboard test path in a form:
-# testify [test_path] [test_class].[test_name]
-class PrepareTestCommander(sublime_plugin.TextCommand):
-  def run(self, args):
-    test_name, test_class = self.extract_class_and_name()
-    if not self.is_present(test_name, "No test function!"):
-      return
-    if not self.is_present(test_class, "No test class!"):
-      return
-
-    test_path = self.extract_path()
-    if not self.is_present(test_path, "Wrong project/file path!"):
-      return
-
-    test_command = "testify %s %s.%s" % (test_path, test_class, test_name)
-    sublime.set_clipboard(test_command)
-    sublime.status_message(test_command)
-
+class TestCommander(sublime_plugin.TextCommand):
   def extract_class_and_name(self):
     region = self.view.sel()[0]
     line_region = self.view.line(region)
@@ -76,11 +59,12 @@ class PrepareTestCommander(sublime_plugin.TextCommand):
     text_string = text_string[::-1]
 
     test_name, test_class = ['', '']
-    match_obj = re.search(':\)fles\(([a-zA-Z_\d]+_tset) fed', text_string) # 1st search for 'def test_[name](self):'
+    # search for 'def test_[name](self):'
+    match_obj = re.search(':\)fles\(([a-zA-Z_\d]+_tset) fed', text_string)
     if match_obj:
       test_name = match_obj.group(1)[::-1]
-
-    match_obj = re.search('\:\)[a-zA-Z_.\d]+\(([a-zA-Z_\d]+) ssalc', text_string) # 2nd search for 'class [Name]Test([inherit_from]):'
+    # search for 'class [Name]Test([inherit_from]):'
+    match_obj = re.search('\:\)[a-zA-Z_.\d]+\(([a-zA-Z_\d]+) ssalc', text_string)
     if match_obj:
       test_class = match_obj.group(1)[::-1]
 
@@ -107,3 +91,37 @@ class PrepareTestCommander(sublime_plugin.TextCommand):
       return False
     else:
       return True
+
+# Copy to clipboard test path in a form:
+# testify [test_path] [test_class].[test_name]
+class PrepareTestCommander(TestCommander):
+  def run(self, args):
+    test_name, test_class = self.extract_class_and_name()
+    if not self.is_present(test_name, "No test function!"):
+      return
+    if not self.is_present(test_class, "No test class!"):
+      return
+
+    test_path = self.extract_path()
+    if not self.is_present(test_path, "Wrong project/file path!"):
+      return
+
+    test_command = "testify %s %s.%s" % (test_path, test_class, test_name)
+    sublime.set_clipboard(test_command)
+    sublime.status_message(test_command)
+
+# Copy to clipboard test class path in a form:
+# testify [test_path] [test_class]
+class PrepareTestClassCommander(TestCommander):
+  def run(self, args):
+    test_name, test_class = self.extract_class_and_name()
+    if not self.is_present(test_class, "No test class!"):
+      return
+
+    test_path = self.extract_path()
+    if not self.is_present(test_path, "Wrong project/file path!"):
+      return
+
+    test_command = "testify %s %s" % (test_path, test_class)
+    sublime.set_clipboard(test_command)
+    sublime.status_message(test_command)
