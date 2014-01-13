@@ -64,7 +64,7 @@ class TestCommander(sublime_plugin.TextCommand):
     if match_obj:
       test_name = match_obj.group(1)[::-1]
     # search for 'class [Name]Test([inherit_from]):'
-    match_obj = re.search('\:\)[a-zA-Z_.\d]+\(([a-zA-Z_\d]+) ssalc', text_string)
+    match_obj = re.search('\:\)[a-zA-Z_.,\d\s]+\(([a-zA-Z_\d]+) ssalc', text_string)
     if match_obj:
       test_class = match_obj.group(1)[::-1]
 
