@@ -1,7 +1,7 @@
 [
   { "keys": ["ctrl+."], "command": "switch_between_code_and_test",
     "context": [ { "key": "selector", "operator": "equal",
-                   "operand": "source.python"
+                   "operand": "(source.python, text.html)"
                } ]
   },
   { "keys": ["ctrl+,"], "command": "prepare_test_commander",

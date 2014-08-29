@@ -24,7 +24,7 @@ class SwitchBetweenCodeAndTest(sublime_plugin.TextCommand):
     if re.search('\w+\_test\.\w+', file_name):
       return file_name.replace("_test", "")
     else:
-      return file_name.replace(".py", "_test.py")
+      return re.sub('.(py|tmpl)', '_test.py', file_name)
 
   def on_selected(self, alternates, index):
     if index == -1:
