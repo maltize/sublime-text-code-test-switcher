@@ -7,8 +7,8 @@ import sublime_plugin
 
 class SwitchBetweenCodeAndTest(sublime_plugin.TextCommand):
   def run(self, args):
-    opposite_file_name = self.opposite_file_name()
-    alternates = self.project_files(opposite_file_name)
+    opposite_file_names = self.opposite_file_names()
+    alternates = self.project_files(opposite_file_names)
 
     if alternates:
       if len(alternates) == 1:
@@ -19,12 +19,15 @@ class SwitchBetweenCodeAndTest(sublime_plugin.TextCommand):
     else:
       sublime.error_message("No file found")
 
-  def opposite_file_name(self):
+  def opposite_file_names(self):
     file_name = self.view.file_name().split(os.sep)[-1]
     if re.search('\w+\_test\.\w+', file_name):
-      return file_name.replace("_test", "")
+      return [
+        file_name.replace("_test", ""),
+        file_name.replace("_test.py", ".tmpl"),
+      ]
     else:
-      return re.sub('.(py|tmpl)', '_test.py', file_name)
+      return [re.sub('.(py|tmpl)', '_test.py', file_name)]
 
   def on_selected(self, alternates, index):
     if index == -1:
@@ -40,13 +43,13 @@ class SwitchBetweenCodeAndTest(sublime_plugin.TextCommand):
       dirnames[:] = [dirname for dirname in dirnames]
       yield dir, dirnames, files
 
-  def project_files(self, file_matcher):
+  def project_files(self, files_matcher):
     directories = self.view.window().folders()
     candidates = []
     for directory in directories:
       for dirname, _, files in self.walk(directory):
         for file in files:
-          if file == file_matcher:
+          if file in files_matcher:
             candidates += [os.path.join(dirname, file)]
     return candidates
 
