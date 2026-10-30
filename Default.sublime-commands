@@ -1,0 +1,14 @@
+[
+    {
+        "caption": "Code Test Switcher: Switch Between Code and Test",
+        "command": "switch_between_code_and_test"
+    },
+    {
+        "caption": "Code Test Switcher: Copy Testify Method Command",
+        "command": "prepare_test_commander"
+    },
+    {
+        "caption": "Code Test Switcher: Copy Testify Class Command",
+        "command": "prepare_test_class_commander"
+    }
+]
